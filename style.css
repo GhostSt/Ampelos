@@ -1,0 +1,237 @@
+/* Styles */
+
+html, body 
+{
+   min-width: 1280px; 
+   margin: 0px;
+   padding: 0px;
+}
+
+body 
+{            
+   margin: 0px;
+   background:#ffffff;
+   font-size:14px;
+   line-height:18px;
+   min-width:720px;
+}
+
+td, th, input, textarea, select, a 
+{
+   font-size: 14px;
+}
+
+div, p
+{
+   margin: 0px;
+   padding: 0px;
+}
+
+p, span 
+{
+   margin-top: 0px;
+   margin-bottom: 5px;
+   font-size: 14px;
+}
+
+h1, h2, h3, h4, h5
+{
+   font-family: "Helvetica Neue",Helvetica,sans-serif;
+}
+
+a, a:visited, a:focus 
+{
+   color: #323232;
+   cursor: pointer;
+   font-family: "Helvetica Neue",Helvetica,sans-serif;
+   text-decoration:none;
+   outline:none
+}
+
+a:hover {
+   text-decoration:none;
+   color:#858585;
+}
+
+a img {
+   border: none;
+}
+
+form {
+   margin-bottom:0;
+}
+
+ul
+{
+   list-style: none outside none;
+   margin: 0px;
+   padding: 0px;
+}
+
+img
+{
+}
+
+.block_width
+{
+   width: 1024px;  
+   margin: 0px auto 0px auto;
+}
+
+.wrapper
+{
+   width: 100%;
+}
+
+.wrapper .header .fotorama
+{
+   margin-top: 75px;
+}
+
+.wrapper .header .menu
+{
+   position: fixed; 
+   top:0px;
+   left: 0px;
+   width: 100%;
+   height: 75px;
+   background: #0B0812;
+   clear:both; 
+   z-index: 100;
+}
+
+.wrapper .header .menu .logo img
+{
+   float: left;
+   position: relative;
+   left: 5%;
+   top: 0px;
+   margin: 0px;
+   padding: 0px;
+   height: 75px;
+}
+
+.wrapper .header .menu ul
+{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   float: right;
+   margin-right: 5%;
+}
+
+.wrapper .header .menu ul li
+{
+   float:left; 
+   margin: 27px 25px 10px 0px;
+}
+
+.wrapper .header .menu ul li:last-child
+{
+   margin-right: 0px; 
+}
+
+.wrapper .header .menu ul li a
+{
+   letter-spacing: 1px; 
+   font-size: 100%;
+   text-transform: uppercase;
+   color: #D5D7E1;
+}
+
+.wrapper .header .menu ul li a:hover
+{
+   color:  #AF9DA2
+}
+
+.content .abous_us
+{
+   margin-top: 0px;
+   margin-bottom: 20px;
+}
+
+.content .abous_us p
+{
+   text-align: justify; 
+   word-spacing: 0.3ex;
+}
+
+.footer .varieties
+{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   clear: both; 
+}
+
+.footer .varieties > a
+{
+   display: block; 
+   position: relative; 
+   float: left; 
+   overflow: hidden;
+}
+
+.footer .varieties > a:nth-child(6)
+{
+   clear: left; 
+}
+
+.footer .varieties > a img
+{
+   position: relative; 
+}
+
+.footer .varieties > a > div
+{
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+   background: #160F1A;
+   color: #FFF;
+   padding: 2px 2px 2px 10px;
+}
+
+.footer .wrap
+{
+   border-top: #0C0D0C solid 4px;
+   background: #0B0812;
+   padding-bottom: 10px;
+}
+
+.footer .footer_menu
+{
+   text-align: auto; 
+}
+
+.footer .footer_menu ul
+{
+   position: relative; 
+   height: 25px;
+   margin-left: 24%;
+   clear: both;
+}
+
+.footer .footer_menu ul li
+{
+   float: left; 
+   margin: 5px 0px 5px 10px;
+}
+
+.footer .footer_menu ul li a
+{
+   color: #D5D7E1;
+}
+
+.footer .footer_menu ul li a:hover
+{
+   color:  #AF9DA2
+}
+
+.footer .copyright
+{
+   margin-top: 5px; 
+   color: #D5D7E1;
+   text-align: center; 
+}
