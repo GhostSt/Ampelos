@@ -30,6 +30,13 @@ $(function()
 
               ); 
    setVarieties(); 
+
+   var body_height = $('body').height();
+   if (body_height < getClientHeight())
+   {
+      $('.footer .wrap').css('top', (getClientHeight() - body_height) - $('.footer .wrap').height() -27 + 'px'); 
+   }
+
 });
 
 /**

@@ -10,6 +10,7 @@ html, body
 body 
 {            
    margin: 0px;
+   padding-top: 75px;
    background:#ffffff;
    font-size:14px;
    line-height:18px;
@@ -36,6 +37,7 @@ p, span
 
 h1, h2, h3, h4, h5
 {
+   margin: 5px 0px 5px 0px; 
    font-family: "Helvetica Neue",Helvetica,sans-serif;
 }
 
@@ -81,11 +83,6 @@ img
 .wrapper
 {
    width: 100%;
-}
-
-.wrapper .header .fotorama
-{
-   margin-top: 75px;
 }
 
 .wrapper .header .menu
@@ -188,13 +185,16 @@ img
    top: 0px;
    left: 0px;
    width: 100%;
-   background: #160F1A;
+   background: #0B0812;
    color: #FFF;
    padding: 2px 2px 2px 10px;
 }
 
 .footer .wrap
 {
+   position: relative;
+   top: 0px;
+   left: 0px;
    border-top: #0C0D0C solid 4px;
    background: #0B0812;
    padding-bottom: 10px;
@@ -234,4 +234,71 @@ img
    margin-top: 5px; 
    color: #D5D7E1;
    text-align: center; 
+}
+
+.content .catalog
+{
+   padding: 10px 0px 10px 0px; 
+}
+
+.content .catalog > div
+{
+   position: relative; 
+   margin-bottom: 10px; 
+}
+
+.content .catalog > div > a
+{
+   display: block;
+   font-size: 20px;
+   font-weight: bold;
+   text-decoration: none;
+   margin: 15px 0px 10px 0px;
+}
+
+.content .catalog > div a:hover
+{
+   color: #0B0812;
+}
+
+.content .catalog > div img
+{
+   float: left;
+   width: 350px;
+   margin-right: 10px;
+}
+
+.content .catalog > div > div 
+{
+   margin-right: 10px;
+   text-align: justify; 
+}
+
+.content .catalog > div > div a
+{
+   display: block; 
+   text-align: right;
+   margin-right: 5px;
+   color: #1A6FC1;
+}
+
+.content .catalog > div > div a:hover
+{
+   text-decoration: underline; 
+}
+
+.content .product 
+{
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+
+.content .product h1
+{
+   color: #0B0812;
+}
+
+.content .product .description
+{
+   text-align: justify; 
 }
