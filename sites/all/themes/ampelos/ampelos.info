@@ -1,0 +1,17 @@
+; $id$
+name=Ampelos
+description=Custom theme for Ampelos site
+version=VERSION
+core=7.x
+engine=phptemplate
+
+; REGIONS
+;-------------------
+regions[fixed_header] = Fixed header
+regions[header] = Header
+regions[content] = Content
+regions[footer] = Footer
+
+; STYLESHEETS
+;-------------------
+stylesheets[all][] = style.css
