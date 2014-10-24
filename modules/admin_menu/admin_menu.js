@@ -33,6 +33,11 @@ Drupal.behaviors.adminMenu = {
     // Client-side caching; if administration menu is not in the output, it is
     // fetched from the server and cached in the browser.
     if (!$adminMenu.length && settings.admin_menu.hash) {
+      
+      // Code added by Diditskiy Victor
+      jQuery('.fixed_header').css('top', '33px'); 
+      // // //
+
       Drupal.admin.getCache(settings.admin_menu.hash, function (response) {
           if (typeof response == 'string' && response.length > 0) {
             $('body', context).append(response);
@@ -46,6 +51,7 @@ Drupal.behaviors.adminMenu = {
     }
     // If the menu is in the output already, this means there is a new version.
     else {
+
       // Apply our behaviors.
       Drupal.admin.attachBehaviors(context, settings, $adminMenu);
     }
@@ -220,6 +226,7 @@ Drupal.admin.behaviors.destination = function (context, settings, $adminMenu) {
  */
 Drupal.admin.behaviors.hover = function (context, settings, $adminMenu) {
   // Hover emulation for IE 6.
+  /*
   if ($.browser.msie && parseInt(jQuery.browser.version) == 6) {
     $('li', $adminMenu).hover(
       function () {
@@ -230,7 +237,7 @@ Drupal.admin.behaviors.hover = function (context, settings, $adminMenu) {
       }
     );
   }
-
+  */
   // Delayed mouseout.
   $('li.expandable', $adminMenu).hover(
     function () {

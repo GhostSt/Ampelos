@@ -16,18 +16,48 @@
          </hgroup>
       <?php } ?>    
 
-      <?php print_r( $primary_menu); ?>
-      <script>
-         $(function()
-         {
-            if ($('#admin-menu-wrapper').lenght) 
-            {
-               $('.fixed_header').css('top', '30px'); 
-            }
-         });
-      </script>
+      <?php 
+         if (!empty($primary_menu))
+            print_r( $primary_menu); 
+      ?>
    </div>
-   <div class="header"></div>
-   <div class="content"></div>
-   <div class="footer"></div>
+
+   <?php if (!empty($header)) { ?>
+   <div class="header">
+      <?php echo $page['header']; ?>
+   </div>
+   <?php } ?>
+   <div class="content">
+      <?php if (!empty($breadcrumb)) { 
+          print $breadcrumb;
+       } ?>
+
+      <?php 
+      /*
+      if (!empty($title))  
+      }
+         print render($title_suffix);
+         echo $title; 
+         print render($title_suffix);
+      } 
+      */
+      ?>
+
+      <?php if (!empty($messages)) { 
+         echo $messages; 
+      } ?>
+
+      <?php if (!empty($tabs)) { 
+         print render($tabs); 
+      } ?>
+
+      <?php if (!empty($page['content'])) { 
+         print render($page['content']); 
+      } ?>
+   </div>
+   <div class="footer">
+      <?php if (!empty($page['footer'])) { 
+         print render($page['footer']); 
+      } ?>
+   </div>
 </div>
