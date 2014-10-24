@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * Implements hook_js_alter().
+ **/
+function bartik_js_alter(&$javascript) 
+{
+   $javascript['misc/jquery.js']['data'] = path_to_theme() . '/jquery-1.9.1.js';
+}
+
+/**
  * Add body classes if certain regions have content.
  */
 function bartik_preprocess_html(&$variables) {
