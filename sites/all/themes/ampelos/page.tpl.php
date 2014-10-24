@@ -22,9 +22,30 @@
       ?>
    </div>
 
-   <?php if (!empty($header)) { ?>
+   <?php if (!empty($page['header'])) { ?>
    <div class="header">
-      <?php echo $page['header']; ?>
+      <?php echo render($page['header']); ?>
+      <script type="text/javascript">
+      // Костыли для вывода слайдера fotorama
+      // По другому не работает
+      // block-views-slideshow-block
+
+      jQuery(function()
+      {
+         // jQuery('#block-views-slideshow-block span.field-content').remove();
+         jQuery('#block-views-slideshow-block .fotorama-container')
+            .addClass('fotorama')
+            .fotorama({
+                         width: '100%',
+                         maxheight: '60%',
+                         fit: 'cover'
+                      });
+
+         jQuery('#block-views-slideshow-block')
+            .delay(500)
+            .css('display', 'block')
+      });
+      </script>
    </div>
    <?php } ?>
    <div class="content">
@@ -58,6 +79,8 @@
    <div class="footer">
       <?php if (!empty($page['footer'])) { 
          print render($page['footer']); 
-      } ?>
+      }
+
+      ?>
    </div>
 </div>
