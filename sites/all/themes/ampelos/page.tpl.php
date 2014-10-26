@@ -33,7 +33,7 @@
       jQuery(function()
       {
          // jQuery('#block-views-slideshow-block span.field-content').remove();
-         jQuery('#block-views-slideshow-block .fotorama-container')
+         jQuery('#block-views-slideshow-block .field-content')
             .addClass('fotorama')
             .fotorama({
                          width: '100%',
@@ -42,8 +42,12 @@
                       });
 
          jQuery('#block-views-slideshow-block')
-            .delay(500)
-            .css('display', 'block')
+            .delay(1000)
+            .fadeIn(500);
+         
+         console.log('Call function setFooterOffset');
+         setTimeout('setFooterOffset()', 1000);
+           // .css('display', 'block')
       });
       </script>
    </div>
@@ -80,7 +84,9 @@
       <?php if (!empty($page['footer'])) { 
          print render($page['footer']); 
       }
-
       ?>
+      <div class="copyright block_width">
+         <span>Все права защищены (©) 2014 </span>
+      </div>
    </div>
 </div>

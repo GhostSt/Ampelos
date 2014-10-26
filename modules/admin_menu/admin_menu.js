@@ -35,7 +35,7 @@ Drupal.behaviors.adminMenu = {
     if (!$adminMenu.length && settings.admin_menu.hash) {
       
       // Code added by Diditskiy Victor
-      jQuery('.fixed_header').css('top', '33px'); 
+      admin_menu = true;
       // // //
 
       Drupal.admin.getCache(settings.admin_menu.hash, function (response) {
@@ -48,10 +48,10 @@ Drupal.behaviors.adminMenu = {
           // Allow resize event handlers to recalculate sizes/positions.
           $(window).triggerHandler('resize');
       });
+
     }
     // If the menu is in the output already, this means there is a new version.
     else {
-
       // Apply our behaviors.
       Drupal.admin.attachBehaviors(context, settings, $adminMenu);
     }
