@@ -8,6 +8,41 @@ jQuery(function()
 
      // Set Preview products
      setPreviewProducts();
+
+     jQuery('#page_wrapper .preview-products .view-content > div')
+        .hover(
+                 function()
+                 {
+                    jQuery(this)
+                       .children()
+                       .children()
+                       .children()
+                       .filter('img')
+                       .animate({
+                                   width: 1.2 * block_width,
+                                   height: 1.2 * block_height,
+                                   left: - 0.1 * block_width,
+                                   top: - 0.1 * block_height
+                                }, 1000);
+                 },
+                 function()
+                 {
+                    jQuery(this)
+                       .children()
+                       .children()
+                       .children()
+                       .filter('img')
+                       .animate({
+                                   width: block_width,
+                                   height: block_height,
+                                   left: 0,
+                                   top: 0
+                                }, 1000);
+
+                 }
+
+              ); 
+
 });   
 
    function setFooterOffset()
@@ -93,5 +128,9 @@ function setPreviewProducts()
       .width( block_width)
       .height( block_height);
       
+   jQuery('#page_wrapper .preview-products .view-content > div:nth-child(5)')
+      .width(jQuery('#page_wrapper .preview-products .view-content > div:nth-child(5)').width() -1);
 
+   jQuery('#page_wrapper .preview-products .view-content > div:last')
+      .width(jQuery('#page_wrapper .preview-products .view-content > div:last').width() -1);
 }
