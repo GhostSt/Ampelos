@@ -173,6 +173,18 @@ ul
    margin: 0px auto 0px auto;
 }
 
+#page_wrapper > .content .profile
+{
+   width: 1024px; 
+   margin: 10px auto 10px auto;
+}
+
+#page_wrapper > .content #block-system-main
+{
+   width: 1024px; 
+   margin: 10px auto 10px auto;
+}
+
 /* Форматирование вывода списка сортов */
 #page_wrapper > .content .view .view-content
 {
