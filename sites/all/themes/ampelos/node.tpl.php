@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Default theme implementation to display a node.
+ * Custom theme implementation to display a node.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
@@ -92,7 +92,7 @@
     </div>
   <?php endif; ?>
 
-  <div class="block_width content"<?php print $content_attributes; ?>>
+  <div class="block_width content <?php echo ($is_front ? 'front-node' : null); ?>"<?php print $content_attributes; ?>>
      <?php if (!$page): ?>
        <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
      <?php else: ?>

@@ -29,3 +29,4 @@ function ampelos_js_alter(&$javascript)
     drupal_add_css('sites/all/libraries/fotorama/fotorama.css');
 }
 
+

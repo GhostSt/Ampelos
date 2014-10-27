@@ -1357,6 +1357,7 @@ function theme_image_style($variables) {
 
   // Determine the URL for the styled image.
   $variables['path'] = image_style_url($variables['style_name'], $variables['path']);
+
   return theme('image', $variables);
 }
 

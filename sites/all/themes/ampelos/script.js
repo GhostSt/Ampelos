@@ -133,4 +133,5 @@ function setPreviewProducts()
 
    jQuery('#page_wrapper .preview-products .view-content > div:last')
       .width(jQuery('#page_wrapper .preview-products .view-content > div:last').width() -1);
+
 }

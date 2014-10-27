@@ -58,9 +58,10 @@
        } ?>
 
       <?php 
+     
       /*
       if (!empty($title))  
-      }
+      {
          print render($title_suffix);
          echo $title; 
          print render($title_suffix);
@@ -71,10 +72,12 @@
       <?php if (!empty($messages)) { 
          echo $messages; 
       } ?>
-
-      <?php if (!empty($tabs)) { 
-         print render($tabs); 
-      } ?>
+      
+      <?php if (!empty($tabs)) { ?> 
+         <div class="contextual-links-region"> 
+         <?php print render($tabs); ?>
+         </div>
+      <?php } ?>
 
       <?php if (!empty($page['content'])) { 
          print render($page['content']); 

@@ -2352,6 +2352,8 @@ function hook_field_display_alter(&$display, $context) {
   // by using hook_field_display_node_alter() instead of
   // hook_field_display_alter(), resulting in less function calls when
   // rendering non-node entities.
+  print_r($context);
+  die;
   if ($context['entity_type'] == 'node' && $context['view_mode'] == 'search_index') {
     $display['label'] = 'hidden';
   }
