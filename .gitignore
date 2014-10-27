@@ -1,0 +1,27 @@
+# Ignore text, log files and images 
+*.log
+*.txt
+*.swp
+*.swo
+*.gif
+*.jpg
+*.jpeg
+*.png
+
+# Ignore xls and xlsx files
+*.xls
+*.xlsx
+
+# Ignore db files
+*.db
+
+# Ignore zip and rar archives
+*.zip
+*.rar
+
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private

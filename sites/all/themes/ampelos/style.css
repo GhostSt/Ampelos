@@ -1,0 +1,407 @@
+/* Styles */
+
+html, body 
+{
+   min-width: 1024px; 
+   margin: 0px;
+   padding: 0px;
+}
+
+body 
+{            
+   margin: 0px;
+   padding-top: 75px;
+   background:#ffffff;
+   font-size:14px;
+   line-height:18px;
+   min-width:720px;
+}
+
+td, th, input, textarea, select, a 
+{
+   font-size: 14px;
+}
+
+div, p
+{
+   margin: 0px;
+   padding: 0px;
+}
+
+p, span 
+{
+   margin-top: 0px;
+   margin-bottom: 5px;
+   font-size: 14px;
+   font-family: "Helvetica Neue",Helvetica,sans-serif;
+}
+
+h1, h2, h3, h4, h5
+{
+   margin: 5px 0px 5px 0px; 
+   font-family: "Helvetica Neue",Helvetica,sans-serif;
+}
+
+a, a:visited, a:focus 
+{
+   color: #323232;
+   cursor: pointer;
+   font-family: "Helvetica Neue",Helvetica,sans-serif;
+   text-decoration:none;
+   outline:none
+}
+
+a:hover {
+   text-decoration:none;
+   color:#858585;
+}
+
+a img {
+   border: none;
+}
+
+form {
+   margin-bottom:0;
+}
+
+ul
+{
+   list-style: none outside none;
+   margin: 0px;
+   padding: 0px;
+}
+
+#block-views-slideshow-block
+{
+   display: none; 
+}
+
+.block_width, .block-width
+{
+   width: 1024px;  
+   margin: 0px auto 0px auto;
+}
+
+#page_wrapper
+{
+   width: 100%;
+}
+
+#page_wrapper .tabs
+{
+   margin: 20px 0px 10px 0px; 
+}
+
+#page_wrapper .fixed_header
+{
+   position: fixed; 
+   top:0px;
+   left: 0px;
+   width: 100%;
+   height: 75px;
+   background: #3C3332;
+   clear:both; 
+   z-index: 100;
+}
+
+#page_wrapper .fixed_header hgroup img
+{
+   float: left;
+   position: relative;
+   left: 5%;
+   top: 0px;
+   margin: 0px;
+   padding: 0px;
+   height: 75px;
+}
+
+#page_wrapper .fixed_header ul.main-menu
+{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   float: right;
+   margin-right: 5%;
+}
+
+#page_wrapper .fixed_header ul.main-menu
+ li
+{
+   float:left; 
+   margin: 27px 25px 10px 0px;
+}
+
+#page_wrapper .fixed_header ul.main-menu li:last-child
+{
+   margin-right: 0px; 
+}
+
+#page_wrapper .fixed_header ul.main-menu li a
+{
+   letter-spacing: 1px; 
+   font-size: 100%;
+   text-transform: uppercase;
+   color: #D5D7E1;
+}
+
+#page_wrapper .fixed_header ul.main-menu li a:hover
+{
+   color: #0D90E2;
+}
+
+#page_wrapper > .content .breadcrumb
+{
+   width: 1024px;
+   margin: 10px auto 10px auto;
+   padding: 0px;
+   font-size: 16px; 
+}
+
+#page_wrapper > .content .breadcrumb a
+{
+   font-size: 16px; 
+}
+
+#page_wrapper .content .node
+{
+   margin: 20px 0px 10px 0px; 
+}
+
+#page_wrapper .footer .block
+{
+   width: 1024px;
+   margin: 0px auto 0px auto;
+}
+
+#page_wrapper > .content .profile
+{
+   width: 1024px; 
+   margin: 10px auto 10px auto;
+}
+
+#page_wrapper > .content #block-system-main
+{
+   width: 1024px; 
+   margin: 10px auto 10px auto;
+}
+
+/* Форматирование вывода списка сортов */
+#page_wrapper > .content .view .view-content
+{
+   margin: 20px 0px 20px 0px; 
+}
+
+#page_wrapper .content .view .views-field-title
+{
+   margin: 15px 0px 10px 0px;
+}
+
+#page_wrapper .content .view .views-field-title a
+{
+   font-size: 20px;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+#page_wrapper .content .view .views-field-title a:hover
+{
+   color: #0D90E2;
+}
+
+#page_wrapper .content .view .views-field-field-product-image
+{ 
+   float: left;
+   width: 350px;
+   margin-right: 10px;
+}
+
+#page_wrapper .content .view .views-field-field-product-image img
+{
+   display: block;
+   max-width: 350px;
+   margin: auto;
+}
+
+#page_wrapper .content .view .views-field-view-node
+{
+   clear: both; 
+   text-align: right;
+   margin-right: 5px;
+}
+
+#page_wrapper .content .view .views-field-view-node a
+{
+   color: #0D90E2;
+}
+
+#page_wrapper .content .view .views-field-view-node a:hover
+{
+   text-decoration: underline; 
+}
+
+#page_wrapper > .content .node > .content
+{
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+
+#page_wrapper > .content .node > .content h1
+{
+   margin-bottom: 20px; 
+   color: #0B0812;
+}
+
+#page_wrapper > .content .node > .content p
+{
+   text-align: justify; 
+}
+
+#page_wrapper > .content .node > .front-node .even > div
+{
+   position: relative;
+   width: 100%;
+   margin: 10px 0px 10px 0px;
+   background: #3C3332;
+}
+
+#page_wrapper > .content .node > .front-node .even > div img
+{
+   max-width: 100%; 
+   margin: 0px;
+   padding: 0px;
+}
+
+#page_wrapper > .content .node > .front-node .even >  div > div
+{
+   width: 100%;
+   margin : 0px;
+   color: #FFF;
+   padding: 3px 5px 3px 5px;
+   font-weight: bold;
+}
+
+#page_wrapper > .content .node > .front-node .even table
+{
+   margin: 10px auto 10px auto; 
+}
+
+#page_wrapper > .content .view .views-field-body
+{
+   margin-right: 10px;
+   text-align: justify; 
+
+}
+
+#page_wrapper .preview-products 
+{
+   margin: 0px;
+   padding: 0px;
+   width: 100%;
+   clear: both; 
+}
+
+#page_wrapper .preview-products .view-content
+{
+   clear: both; 
+}
+
+#page_wrapper .preview-products .view-content > div
+{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   float: left;
+   width: 100px;
+   overflow: hidden;
+}
+
+#page_wrapper .preview-products .view-content > div:nth-child(6) 
+{
+   clear: left; 
+}
+
+#page_wrapper .preview-products .view-content > div a
+{
+   margin: 0px;
+   padding: 0px;
+}
+
+#page_wrapper .preview-products .view-content > div div.title 
+{
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   margin: 0px;
+   padding: 3px 5px 3px 15px;
+   width: 100%;
+   background: #3C3332;
+   z-index: 1;
+   opacity: 0.7;
+   -moz-opacity: 0.7;
+   -webkit-opacity: 0.7;
+   -khtml-opacity: 0.7;
+}
+
+#page_wrapper .preview-products .view-content > div div.title a
+{
+   color: #FFF; 
+   font-size: 14px;
+}
+
+#page_wrapper .preview-products .view-content > div img
+{
+   position: relative; 
+   width: 100%;
+}
+
+#page_wrapper .preview-products 
+{
+}
+
+.footer
+{
+   position: relative;
+   top: 0px;
+   left: 0px;
+   border-top: #0C0D0C solid 4px;
+   background: #3C3332;
+   padding-bottom: 10px;
+}
+
+.footer ul.menu
+{
+   text-align: auto; 
+}
+
+.footer ul.menu
+{
+   position: relative; 
+   height: 25px;
+   margin-left: 24%;
+   clear: both;
+}
+
+.footer ul.menu li
+{
+   float: left; 
+   margin: 5px 0px 5px 10px;
+}
+
+.footer ul.menu li a
+{
+   color: #D5D7E1;
+}
+
+.footer ul.menu li a:hover
+{
+   color:  #AF9DA2
+}
+
+.footer .copyright
+{
+   margin-top: 5px; 
+   color: #D5D7E1;
+   text-align: center; 
+}
+
+
