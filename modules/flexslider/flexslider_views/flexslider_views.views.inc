@@ -12,15 +12,15 @@
 function flexslider_views_views_plugins() {
   return array(
     'style' => array(
-      // Style plugin for the FlexSlider.
+      // Style plugin for the navigation.
       'flexslider' => array(
-        'title' => t('FlexSlider'),
-        'help' => t('Display the results in a FlexSlider widget.'),
+        'title' => t('Flex Slider'),
+        'help' => t('Display the results in a Flex Slider widget.'),
         'handler' => 'flexslider_views_plugin_style_flexslider',
-        'theme' => 'flexslider_views',
+        'theme' => 'views_view_flexslider',
         'theme file' => 'flexslider_views.theme.inc',
         'theme path' => drupal_get_path('module', 'flexslider_views') . '/theme',
-        'uses row plugin' => TRUE,
+        'uses row plugin' => FALSE,
         'uses fields' => TRUE,
         'uses options' => TRUE,
         'type' => 'normal',

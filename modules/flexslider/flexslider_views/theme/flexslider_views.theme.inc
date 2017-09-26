@@ -2,41 +2,36 @@
 
 /**
  * @file
- * Theme functions for FlexSlider Views
+ * Describe the file
  *
  * @author Mathew Winstone <mwinstone@coldfrontlabs.ca>
  */
 
 /**
- * Add a preprocessor to prepare data from FlexSlider Views
+ * Defines theme_views_view_flexslider().
  */
-function template_process_flexslider_views(&$vars) {
-  // Only run the preprocessor if it is a view
-  if (!empty($vars['view'])) {
-    // Prepare all data to be passed to theme_flexslider().
-    $items = array();
-    $view = $vars['view'];
-    $settings = array();
-    $settings['optionset'] = $vars['options']['optionset'];
+function theme_views_view_flexslider($vars) {
+  $items = array();
 
-    $row_plugin = $view->style_plugin->row_plugin;
-
-    foreach ($vars['rows'] as $id => $row) {
-      // Render the row into a slide
-      $view->row_index = $id;
-      $item['slide'] = $row_plugin->render($row);
-      $item['caption'] = (isset($row->caption) && !empty($row->caption)) ? $row->caption : NULL;
-      $items[] = $item;
+  $view = $vars['view'];
+  $img_field_name = $vars['img_field_name'];
+  foreach ($vars['rows'] as $row) {
+    // Can't assume the field has the same language as the Entity that
+    // contains it
+    // $lang = $row->_field_data[$view->base_field]['entity']->language;
+    // omit rows without image field.
+    if (!isset($row->_field_data[$view->base_field]['entity']->{$img_field_name})) {
+      continue;
     }
-
-    // Add the slide items to the variables
-    $vars['items'] = $items;
-
-    // Add the attributes
-    $settings['attributes']['id'] = $vars['options']['id'];
-
-    // Reset the options to the processed values
-    $vars['settings'] = $settings;
+    // Fields in core don't inherit their containing language by default.
+    // Assume LANGUAGE_NONE until a better solution comes along
+    $item = $row->_field_data[$view->base_field]['entity']->{$img_field_name}[LANGUAGE_NONE][0];
+    $items[] = $item;
   }
-  return $vars;
+
+  return theme('flexslider_container', array(
+    'items' => $items,
+    'settings' => $vars['options'],
+  ));
 }
+
