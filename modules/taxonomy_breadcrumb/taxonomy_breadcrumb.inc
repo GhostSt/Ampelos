@@ -17,7 +17,6 @@
 function _taxonomy_breadcrumb_node_get_lightest_term($nid) {
   // Get the lightest vocabulary id.
   $query = db_select('node', 'n');
-  $query->distinct();
   $query->join('taxonomy_index', 'ti', 'n.nid = ti.nid');
   $query->join('taxonomy_term_data', 'ttd', 'ti.tid = ttd.tid');
   $query->join('taxonomy_vocabulary', 'tv', 'ttd.vid = tv.vid');
@@ -26,19 +25,20 @@ function _taxonomy_breadcrumb_node_get_lightest_term($nid) {
   $query->orderBy('tv.weight');
   $query->orderBy('tv.name');
   $query->range(0, 1);
+  $query->groupBy('tv.vid');
   $vid = $query->execute()->fetchField();
 
   // If a vocabulary was successfully retrieved.
   if ($vid) {
     // Retrieve the vocabularies terms associated with the node.
     $query = db_select('node', 'n');
-    $query->distinct();
     $query->join('taxonomy_index', 'ti', 'n.nid = ti.nid');
     $query->join('taxonomy_term_data', 'ttd', 'ti.tid = ttd.tid');
     $query->join('taxonomy_vocabulary', 'tv', 'ttd.vid = tv.vid');
     $query->fields('ti', array('tid'));
     $query->condition('n.nid', $nid, '=');
     $query->condition('tv.vid', $vid, '=');
+    $query->groupBy('tv.vid');
     $tids = $query->execute()->fetchCol();
 
     // If only a single term is associated with this node.
