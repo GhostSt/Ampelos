@@ -234,7 +234,12 @@ function googleanalytics_page_alter(&$page) {
           if (is_object($node)) {
             $types += array('node' => $node);
           }
-          $googleanalytics_custom_var['value'] = token_replace($googleanalytics_custom_var['value'], $types, array('clear' => TRUE));
+
+          if (isset($googleanalytics_custom_var['value'])) {
+              $googleanalytics_custom_var['value'] = token_replace($googleanalytics_custom_var['value'], $types, array('clear' => TRUE));
+          } else {
+              $googleanalytics_custom_var['value'] = '';
+          }
 
           // Suppress empty values.
           if (!drupal_strlen(trim($googleanalytics_custom_var['value']))) {
