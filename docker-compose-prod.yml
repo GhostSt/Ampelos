@@ -1,0 +1,29 @@
+version: '2'
+services:
+  nginx:
+    image: ghostst/ampelos-nginx
+    ports:
+      - "8084:80"
+    extra_hosts:
+      - "ampelos.test:127.0.0.1"
+    volumes_from:
+      - php
+    links:
+      - php
+
+  php:
+    image: ghostst/ampelos-php
+    expose:
+     - 9000
+    volumes:
+      - /code
+    links:
+      - mysql
+
+  mysql:
+    image: ghostst/ampelos-mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: core
+        MYSQL_DATABASE: ampelos
+        MYSQL_USER: ampelos_user
+        MYSQL_PASSWORD: core

@@ -1,0 +1,35 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8084:80"
+    extra_hosts:
+      - "ampelos.test:127.0.0.1"
+    volumes:
+      - ./docker/nginx/ampelos.test.conf:/etc/nginx/conf.d/ampelos.conf
+    volumes_from:
+      - php
+    links:
+      - php
+
+  php:
+    build:
+      context: docker/php
+    volumes:
+      - /var/www/ampelos.test:/code
+    expose:
+     - 9000
+    links:
+      - mysql
+
+  mysql:
+    build:
+      context: docker/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: core
+        MYSQL_DATABASE: ampelos
+        MYSQL_USER: ampelos_user
+        MYSQL_PASSWORD: core
+    volumes:
+      - /var/www/ampelos.test:/code
