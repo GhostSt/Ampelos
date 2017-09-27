@@ -1,4 +1,4 @@
 FROM nginx:latest
 MAINTAINER Victor Diditskiy <victor.diditskiy@yandex.ru>
 
-COPY ampelos.test.conf /etc/nginx/conf.d/ampelos.conf
+COPY ampelos.com.conf /etc/nginx/conf.d/ampelos.conf
