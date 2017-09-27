@@ -5,7 +5,7 @@ services:
     ports:
       - "8084:80"
     extra_hosts:
-      - "ampelos.test:127.0.0.1"
+      - "ampelos.com.ua:127.0.0.1"
     volumes_from:
       - php
     links:
