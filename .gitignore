@@ -3,10 +3,6 @@
 *.txt
 *.swp
 *.swo
-*.gif
-*.jpg
-*.jpeg
-*.png
 
 # Ignore xls and xlsx files
 *.xls
