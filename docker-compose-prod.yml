@@ -3,7 +3,7 @@ services:
   nginx:
     image: ghostst/ampelos-nginx
     ports:
-      - "8084:80"
+      - "80:80"
     extra_hosts:
       - "ampelos.com.ua:127.0.0.1"
     volumes_from:

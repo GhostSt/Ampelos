@@ -1,0 +1,473 @@
+<?php
+
+/**
+ * @file
+ * A light-weight, customizable image gallery plugin for Drupal based on jQuery
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function fotorama_menu() {
+    $items = array();
+
+    $items['admin/config/media/fotorama'] = array(
+        'title' => 'Fotorama',
+        'description' => 'Configure Fotorama image galleries.',
+        'page callback' => 'fotorama_admin_page',
+        'access arguments' => array('administer site configuration'),
+        'file' => 'fotorama.admin.inc',
+    );
+
+    return $items;
+}
+
+function fotorama_library() {
+    // Library One.
+    $libraries['fotorama'] = array(
+        'title' => 'Fotorama',
+        'website' => 'http://fotoramajs.com',
+        'version' => '2.0.2',
+        'js' => array(
+            libraries_get_path('fotorama').'/fotorama.js' => array(),
+        ),
+        'css' => array(
+            libraries_get_path('fotorama').'/fotorama.css' => array(),
+        ),
+    );
+    return $libraries;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function fotorama_theme() {
+    return array(
+        'fotorama_container' => array(
+            'variables' => array('imgs' => array()),
+            'template' => 'fotorama-container',
+        )
+    );
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ * Adds the Galleria format option within the manage display form of
+ * of an image field.
+ */
+function fotorama_field_formatter_info() {
+    return array(
+        'fotorama' => array(
+            'label' => t('Fotorama'),
+            'field types' => array('image'),
+            'settings' => _fotorama_settings_array()
+        ),
+    );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ *
+ * Provides display settings form within the manage display page of
+ * an image field with formatter galleria.
+ */
+function fotorama_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+    $form = array();
+    $display = $instance['display'][$view_mode];
+    $default = $display['settings'];
+    $form['width'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Width'),
+        '#default_value' => $default['width'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['height'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Height'),
+        '#default_value' => $default['height'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['aspectRatio'] = array(
+        '#type' => 'textfield',
+        '#title' => t('aspectRatio'),
+        '#default_value' => $default['aspectRatio'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['touchStyle'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('touchStyle'),
+        '#default_value' => $default['touchStyle'],
+        '#return_value' => true
+    );
+    $form['click'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('click'),
+        '#default_value' => $default['click'],
+        '#return_value' => true
+    );
+    $form['loop'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('loop'),
+        '#default_value' => $default['loop'],
+        '#return_value' => true
+    );
+    $form['transitionDuration'] = array(
+        '#type' => 'textfield',
+        '#title' => t('transitionDuration'),
+        '#default_value' => $default['transitionDuration'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['background'] = array(
+        '#type' => 'textfield',
+        '#title' => t('background'),
+        '#default_value' => $default['background'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['margin'] = array(
+        '#type' => 'textfield',
+        '#title' => t('margin'),
+        '#default_value' => $default['margin'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['minPadding'] = array(
+        '#type' => 'textfield',
+        '#title' => t('minPadding'),
+        '#default_value' => $default['minPadding'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['alwaysPadding'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('alwaysPadding'),
+        '#default_value' => $default['alwaysPadding'],
+        '#return_value' => true
+    );
+    $form['zoomToFit'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('zoomToFit'),
+        '#default_value' => $default['zoomToFit'],
+        '#return_value' => true
+    );
+    $form['cropToFit'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('cropToFit'),
+        '#default_value' => $default['cropToFit'],
+        '#return_value' => true
+    );
+
+
+
+    $form['nav'] = array(
+        '#type' => 'select',
+        '#title' => t('nav'),
+        '#options' => array(
+            'thumbs' => 'thumbs',
+            'dots' => 'dots',
+            'none' => 'none',
+        ),
+        '#default_value' => $default['nav']
+    );
+    $form['navPosition'] = array(
+        '#type' => 'select',
+        '#title' => t('navPosition'),
+        '#options' => array(
+            'auto' => 'auto',
+            'bottom' => 'bottom',
+            'top' => 'top',
+            'left' => 'left',
+            'right' => 'right'
+        ),
+        '#default_value' => $default['navPosition'],
+    );
+    $form['navBackground'] = array(
+        '#type' => 'textfield',
+        '#title' => t('navBackground'),
+        '#default_value' => $default['navBackground'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['dotColor'] = array(
+        '#type' => 'textfield',
+        '#title' => t('dotColor'),
+        '#default_value' => $default['dotColor'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['thumbSize'] = array(
+        '#type' => 'textfield',
+        '#title' => t('thumbSize'),
+        '#default_value' => $default['thumbSize'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['thumbMargin'] = array(
+        '#type' => 'textfield',
+        '#title' => t('thumbMargin'),
+        '#default_value' => $default['thumbMargin'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['thumbBorderWidth'] = array(
+        '#type' => 'textfield',
+        '#title' => t('thumbBorderWidth'),
+        '#default_value' => $default['thumbBorderWidth'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['thumbBorderColor'] = array(
+        '#type' => 'textfield',
+        '#title' => t('thumbBorderColor'),
+        '#default_value' => $default['thumbBorderColor'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['arrows'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('arrows'),
+        '#default_value' => $default['arrows'],
+        '#return_value' => true
+    );
+    $form['arrowsColor'] = array(
+        '#type' => 'textfield',
+        '#title' => t('arrowsColor'),
+        '#default_value' => $default['arrowsColor'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['arrowPrev'] = array(
+        '#type' => 'textfield',
+        '#title' => t('arrowPrev'),
+        '#default_value' => $default['arrowPrev'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['arrowNext'] = array(
+        '#type' => 'textfield',
+        '#title' => t('arrowNext'),
+        '#default_value' => $default['arrowNext'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['caption'] = array(
+        '#type' => 'select',
+        '#title' => t('caption'),
+        '#options' => array(
+            'simple' => 'simple',
+            'overlay' => 'overlay',
+            'none' => 'none'
+        ),
+        '#default_value' => $default['caption'],
+    );
+    $form['flexible'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('flexible'),
+        '#default_value' => $default['flexible'],
+        '#return_value' => true
+    );
+    $form['fitToWindowHeight'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('fitToWindowHeight'),
+        '#default_value' => $default['fitToWindowHeight'],
+        '#return_value' => true
+    );
+    $form['fullscreen'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('fullscreen'),
+        '#default_value' => $default['fullscreen'],
+        '#return_value' => true
+    );
+    $form['fullscreenIcon'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('fullscreenIcon'),
+        '#default_value' => $default['fullscreenIcon'],
+        '#return_value' => true
+    );
+    $form['autoplay'] = array(
+        '#type' => 'textfield',
+        '#title' => t('autoplay'),
+        '#default_value' => $default['autoplay'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['stopAutoplayOnAction'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('stopAutoplayOnAction'),
+        '#default_value' => $default['stopAutoplayOnAction'],
+        '#return_value' => true
+    );
+    $form['vertical'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('vertical'),
+        '#default_value' => $default['vertical'],
+        '#return_value' => true
+    );
+    $form['preload'] = array(
+        '#type' => 'textfield',
+        '#title' => t('preload'),
+        '#default_value' => $default['preload'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['preloader'] = array(
+        '#type' => 'textfield',
+        '#title' => t('preloader'),
+        '#default_value' => $default['preloader'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['shadows'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('shadows'),
+        '#default_value' => $default['shadows'],
+        '#return_value' => true
+    );
+    $form['hash'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('hash'),
+        '#default_value' => $default['hash'],
+        '#return_value' => true
+    );
+    $form['startImg'] = array(
+        '#type' => 'textfield',
+        '#title' => t('startImg'),
+        '#default_value' => $default['startImg'],
+        '#size' => 20,
+        '#maxlength' => 60,
+    );
+    $form['#attached']['js'] = array(
+        drupal_get_path('module', 'fotorama') . '/js/fotorama_admin_form.js' => array()
+    );
+    return $form;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ *
+ * Displays the summary of the set options of a Galleria formatted image field
+ */
+function fotorama_field_formatter_settings_summary($field, $instance, $view_mode) {
+    _check_if_library_exists();
+    $display = $instance['display'][$view_mode];
+    $settings = $display['settings'];
+    $summary = array();
+    foreach ($settings as $k => $v) {
+        $summary[] = "$k: $v";
+    }
+
+
+    return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ *
+ * Prepares a renderable array of images and adds the neccessary JS and CSS
+ */
+function fotorama_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    $element = array();
+    $settings = $display['settings'];
+
+    switch ($display['type']) {
+        case 'fotorama':
+            // Common case: each value is displayed individually in a sub-element
+            // keyed by delta. The field.tpl.php template specifies the markup
+            // wrapping each value.
+            foreach ($items as $delta => $item) {
+                $item['style_name'] = 'large';
+                $item['path'] = $item['uri'];
+
+                $images[] = array('#markup' => theme_image_style($item), 'bigUri' => file_create_url($item['uri']));
+            }
+
+            if (empty($images))
+               break;
+
+            $element[0] = array(
+                '#theme' => 'fotorama_container',
+                '#imgs' => $images
+            );
+            if (variable_get('fotorama_lib_exist')){
+                $element['#attached']['library'][] = array('fotorama', 'fotorama');
+                $element['#attached']['js'] = array(drupal_get_path('module', 'fotorama') . '/js/fotorama_init.js' => array());
+            }
+            
+            foreach ($display['settings'] as $k => $setting) {
+                if (is_numeric($setting)) {
+                    $display['settings'][$k] = (float) $setting;
+                } elseif ($setting === 'null' || $setting === null) {
+                    unset($display['settings'][$k]);
+                }
+            }
+
+            $element['#attached']['js'][] = array(
+                'data' => array('fotorama' => $display['settings']),
+                'type' => 'setting',
+            );
+            break;
+    }
+
+    return $element;
+}
+
+function _check_if_library_exists() {
+    $file = libraries_get_path('fotorama');
+    if (!is_dir($file)) {
+        drupal_set_message(t('Library directory not found: <code>@file</code>. You should download <a href="http://fotoramajs.com/download/">Fotorama</a>', array('@file' => $file)), 'error', FALSE);
+        variable_set('fotorama_lib_exist',FALSE);
+        return FALSE;
+    }else{
+        variable_set('fotorama_lib_exist',TRUE);
+        return TRUE;
+    }
+    
+}
+
+function _fotorama_settings_array() {
+    return array(
+        'width' => 'auto',
+        'height' => 'auto',
+        'aspectRatio' => 'auto',
+        'touchStyle' => true,
+        'click' => true,
+        'loop' => false,
+        'transitionDuration' => 333,
+        'background' => null,
+        'margin' => 5,
+        'minPadding' => 10,
+        'alwaysPadding' => false,
+        'zoomToFit' => true,
+        'cropToFit' => false,
+        'nav' => 'thumbs',
+        'navPosition' => 'auto',
+        'navBackground' => null,
+        'dotColor' => null,
+        'thumbSize' => null,
+        'thumbMargin' => 5,
+        'thumbBorderWidth' => 3,
+        'thumbBorderColor' => null,
+        'arrows' => true,
+        'arrowsColor' => null,
+        'arrowPrev' => null,
+        'arrowNext' => null,
+        'caption' => 'none',
+        'flexible' => false,
+        'fitToWindowHeight' => false,
+        'fullscreen' => false,
+        'fullscreenIcon' => false,
+        'autoplay' => false,
+        'stopAutoplayOnAction' => true,
+        'vertical' => false,
+        'preload' => 3,
+        'preloader' => 'dark',
+        'shadows' => true,
+        'hash' => false,
+        'startImg' => 1
+    );
+}

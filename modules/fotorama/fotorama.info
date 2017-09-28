@@ -1,0 +1,10 @@
+name = Fotorama
+description = Turns image fields of nodes into Fotorama galleries.
+core = 7.x
+configure = admin/config/media/fotorama
+
+dependencies[] = image
+dependencies[] = libraries
+
+files[] = fotorama.module
+files[] = fotorama.admin.inc

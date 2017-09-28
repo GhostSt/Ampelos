@@ -1,0 +1,10 @@
+(function ($) {
+
+    Drupal.behaviors.fotorama = {
+        attach: function (context, settings) {                    
+            console.log(Drupal.settings.fotorama);
+            $('.fotorama-container').fotorama(Drupal.settings.fotorama);            
+        }
+    };
+
+})(jQuery);
