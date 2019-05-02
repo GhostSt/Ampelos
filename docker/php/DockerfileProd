@@ -7,7 +7,7 @@ RUN apt-get update -y && \
 RUN apt-get install -y libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
+        libpng-dev \
         libssl-dev \
         wget \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mbstring \
@@ -24,4 +24,12 @@ COPY . /code
 
 WORKDIR /code
 
-#RUN composer install
+RUN rm -rf docker \
+    && rm cron.php \
+    && rm authorize.php \
+    && rm docker-compose.yml \
+    && rm docker-compose-prod.yml \
+    && rm install.php \
+    && rm update.php \
+    && rm web.config \
+    && rm xmlrpc.php
